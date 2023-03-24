@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Summary</title>
+</head>
+<body>
+    <h1>Order Summary</h1>
+    <p>Items:</p>
+    <ul>
+        {% for item in items %}
+        <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+    <p>Total: ${{ total }}</p>
+    <form action="{{ url_for('confirm') }}" method="post">
+        <input type="hidden" name="name" value="{{ name }}">
+        <input type="hidden" name="email" value="{{ email }}">
+        <input type="hidden" name="address" value="{{ address }}">
+        {% for item in items %}
+        <input type="hidden" name="items" value="{{ items }}">
+        {% endfor %}
+        <input type="hidden" name="total" value="{{ total }}">
+        <input type="submit" value="Confirm Order">
+    </form>
+</body>
+</html>
